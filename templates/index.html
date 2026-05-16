@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Student Assignment Portal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Assignment Portal</h1>
+
+        <!-- Submit Assignment Form -->
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="student_name"
+                placeholder="Student Name"
+                required
+            >
+
+            <input
+                type="number"
+                name="roll_number"
+                placeholder="Roll Number"
+                required
+            >
+
+            <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                required
+            >
+
+            <input
+                type="url"
+                name="assignment_link"
+                placeholder="Assignment Link"
+                required
+            >
+
+            <button
+                type="submit"
+                name="action"
+                value="submit"
+                class="submit-btn"
+            >
+                Submit Assignment
+            </button>
+
+        </form>
+
+        <!-- Fetch Summary Form -->
+
+        <form method="POST">
+
+            <button
+                type="submit"
+                name="action"
+                value="fetch_summary"
+                class="summary-btn"
+            >
+                Fetch Summary
+            </button>
+
+        </form>
+
+        <!-- Submission Response -->
+
+        {% if response_message %}
+
+            <div class="response-box">
+
+                <h2>Submission Response</h2>
+
+                <pre>
+{{ response_message | tojson(indent=4) }}
+                </pre>
+
+            </div>
+
+        {% endif %}
+
+        <!-- Summary Response -->
+
+        {% if summary_data %}
+
+            <div class="summary-box">
+
+                <h2>Summary Data</h2>
+
+                <pre>
+{{ summary_data | tojson(indent=4) }}
+                </pre>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
